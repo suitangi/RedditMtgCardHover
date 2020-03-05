@@ -14,251 +14,83 @@ function unloadCSS(file) {
   cssNode && cssNode.parentNode.removeChild(cssNode);
 }
 
-//load the emotes json into a global variable
-function saveJson(emotesJson){
-  window.emotesJson = emotesJson;
-}
 
-//Classchanged function for the MutationObserver for active conversation
-function classChanged() {
-	var act = document.getElementsByClassName("_1ht2")[0];
-    window.convoSwitchOB.observe(act, {
-      attributes: true,
-      attributeFilter: ["class"]
-    });
-
-  //implementing the observe for newMessageob
-  var newMOBSetter = setInterval(function(){
-      if(document.getElementsByClassName("_2k8v")[0] != null){
-        window.newMesssageOb.observe(document.getElementsByClassName("_2k8v")[0].nextSibling ,{
-          childList: true,
-          subtree: true
-        });
-        clearInterval(newMOBSetter);
+//function to add card hovers
+function addCardHover() {
+  let alist = document.getElementsByTagName('a');
+  for (var i = 0; i < alist.length; i++) {
+    if (!alist[i].classList.contains("cardHoverChecked")) {
+      if (alist[i].getAttribute("href") != null &&
+        (alist[i].getAttribute("href").includes("img.scryfall.com/cards") ||
+          alist[i].getAttribute("href").includes("gatherer.wizards.com/Handlers/Image"))) {
+        let linkNode = alist[i];
+        let cardName = linkNode.innerHTML;
+        let inHtml = "<div class='cardHover'><img src='" + linkNode.getAttribute("href") + "'></div>";
+        linkNode.innerHTML = cardName + inHtml;
+        console.log(cardName + ": Hover Added");
       }
-  }, 100);
-}
-
-//tags all emotes
-function tagEmotes(){
-  if(window.messageList.length <= 0){
-    setTimeout(function(){tagEmotes();}, 500);
-  }
-  else{
-    //for message text
-    for(i = 0; i < window.messageList.length; i++){
-      if(!window.messageList[i].hasAttribute("EmoteChecked")){
-        for (j = 0; j < window.emotesJson.emotes.length; j++){
-          // console.log(window.messageList[i].innerHTML + ", " + window.emotesJson.emotes[j].name + ', ' + window.emotesJson.emotes[j].url);
-          var emoteName = window.emotesJson.emotes[j].name;
-          var emoteURL = window.emotesJson.emotes[j].url;
-
-          var str = window.messageList[i].innerHTML;
-
-
-          if (str == emoteName){ //Message is one emote
-            var res = "<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>";
-            window.messageList[i].innerHTML = res;
-            break;
-          }
-          else if (str.includes(emoteName)){ //Message is multiple emotes
-            //spaces
-            var res = str.replace(new RegExp(emoteName + " ", 'g'), "<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span> ");
-            res = res.replace(new RegExp(" " + emoteName, 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>");
-            //new lines
-            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>\n");
-            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>");
-            //punctuation
-            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>!");
-            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>.");
-            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>,");
-            window.messageList[i].innerHTML = res;
-          }
-        }
-        //set the emotechecked attribute
-        var att = document.createAttribute("EmoteChecked");
-        window.messageList[i].setAttributeNode(att);
-      }
+      alist[i].classList.add("cardHoverChecked");
     }
   }
 }
 
-//replace all emotes
-function replaceEmotes(){
-  // console.log("Emotes Successfully Replaced");
-  if(window.messageList.length <= 0){
-    setTimeout(function(){replaceEmotes();}, 500);
+//function at specified links
+function atLinks() {
+  linklist = ["239MTG", "affinityforartifacts", "alliesmtg", "AllStandards", "Alphabetter", "Amonkhet", "architectMTG", "ArclightPhoenixMTG", "aristocratsMTG", "BadMTGCombos", "basementboardgames", "BaSE_MtG", "BudgetBrews", "budgetdecks", "BulkMagic", "cardsphere", "casualmtg", "CatsPlayingMTG", "CircuitContest", "cocomtg", "CompetitiveEDH", "custommagic", "DeckbuildingPrompts", "edh", "EDHug", "EggsMTG", "ElvesMTG", "enchantress", "EsperMagic", "findmycard", "fishmtg", "FlickerMTG", "freemagic", "goblinsMTG", "HamiltonMTG", "HardenedScales", "humansmtg", "infect", "johnnys", "kikichord", "lanternmtg", "lavaspike", "locketstorm", "lrcast", "magicarena", "Magicdeckbuilding", "MagicDuels", "magicTCG", "magicTCG101", "MakingMagic", "marchesatheblackrose", "marduMTG", "MentalMentalMagic", "millMTG", "ModernLoam", "modernmagic", "ModernRecMTG", "modernspikes", "ModernZombies", "monobluemagic", "mtg", "MTGAngels", "mtgbattlebox", "mtgbracket", "mtgbrawl", "mtgbudgetmodern", "mtgcardfetcher", "mtgcube", "MTGDredge", "mtgfinalfrontier", "mtgfinance", "mtgfrontier", "mtglegacy", "MTGManalessDredge", "MTGMaverick", "mtgmel", "mtgrules", "mtgspirits", "mtgtreefolk", "mtgvorthos", "neobrand", "nicfitmtg", "oathbreaker_mtg", "oldschoolmtg", "pauper", "PauperArena", "PauperEDH", "peasantcube", "PennyDreadfulMTG", "PioneerMTG", "planeshiftmtg", "ponzamtg", "RatsMTG", "RealLifeMTG", "RecklessBrewery", "rpg_brasil", "scapeshift", "shittyjudgequestions", "sistersmtg", "skredred", "Sligh", "spikes", "stoneblade", "StrangeBrewEDH", "SuperUltraBudgetEDH", "therandomclub", "Thoptersword", "threecardblind", "TinyLeaders", "TronMTG", "UBFaeries", "uwcontrol", "xmage", "reddit.com/message", "reddit.com/user/MTGCardFetcher"]
+
+  for (j = 0; j < linklist.length; j++) {
+    if (location.href.toLowerCase().includes(linklist[j].toLowerCase()))
+      return true;
   }
-  else{
-    //for quoted text
-    var quoteList = document.getElementsByClassName("_4k7e _4ik4 _4ik5");
-    for(i = 0; i < quoteList.length; i++){
-      if(!quoteList[i].hasAttribute("EmoteChecked")){
-        for (j = 0; j < window.emotesJson.emotes.length; j++){
-          // console.log(quoteList[i].innerHTML + ", " + window.emotesJson.emotes[j].name + ', ' + window.emotesJson.emotes[j].url);
-          var emoteName = window.emotesJson.emotes[j].name;
-          var emoteURL = window.emotesJson.emotes[j].url;
-
-          var str = quoteList[i].innerHTML;
-
-
-          if (str == emoteName){ //Message is one emote
-            var res = "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>";
-            quoteList[i].innerHTML = res;
-            break;
-          }
-          else if (str.includes(emoteName)){ //Message is multiple emotes
-            //spaces
-            var res = str.replace(new RegExp(emoteName + " ", 'g'), "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"> ");
-            res = res.replace(new RegExp(" " + emoteName, 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">");
-            //new lines
-            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">\n");
-            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">");
-            //punctuation
-            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">!");
-            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">.");
-            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">,");
-            quoteList[i].innerHTML = res;
-          }
-        }
-        //set the emotechecked attribute
-        var att = document.createAttribute("EmoteChecked");
-        quoteList[i].setAttributeNode(att);
-      }
-    }
-
-    //for message text
-    for(i = 0; i < window.messageList.length; i++){
-      if(!window.messageList[i].hasAttribute("EmoteChecked")){
-        for (j = 0; j < window.emotesJson.emotes.length; j++){
-          // console.log(window.messageList[i].innerHTML + ", " + window.emotesJson.emotes[j].name + ', ' + window.emotesJson.emotes[j].url);
-          var emoteName = window.emotesJson.emotes[j].name;
-          var emoteURL = window.emotesJson.emotes[j].url;
-
-          var str = window.messageList[i].innerHTML;
-
-
-          if (str == emoteName){ //Message is one emote
-            var res = "<span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>";
-            window.messageList[i].innerHTML = res;
-            break;
-          }
-          else if (str.includes(emoteName)){ //Message is multiple emotes
-            //spaces
-            var res = str.replace(new RegExp(emoteName + " ", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span> ");
-            res = res.replace(new RegExp(" " + emoteName, 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>");
-            //new lines
-            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>\n");
-            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>");
-            //punctuation
-            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>!");
-            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>.");
-            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>,");
-            window.messageList[i].innerHTML = res;
-          }
-        }
-        //set the emotechecked attribute
-        var att = document.createAttribute("EmoteChecked");
-        window.messageList[i].setAttributeNode(att);
-      }
-    }
-  }
+  return false;
 }
-
 
 ///////////////////////////////////Start the scripts///////////////////////////////////
 //load the storage variables
-//get the emote_replace
-chrome.storage.local.get({emote_replace: 'on'}, function(data) {
-      if(data.emote_replace == 'off'){
-        window.emoteReplace = false;
-      }
-      else{
-        window.emoteReplace = true;
-      }
-      //get emote_hover
-      chrome.storage.local.get({emote_hover: 'on'}, function(data) {
-            if(data.emote_hover == 'off'){
-              window.emoteHover = false;
-            }
-            else{
-              window.emoteHover = true;
-            }
-            console.log(window.emoteReplace);
-            console.log(window.emoteHover);
-            if(window.emoteHover){
-              console.log("ok");
-              if(window.emoteReplace){
-                loadCSS('emoteHover')
-                console.log("ok2");
-              }
-              else{
-                loadCSS('txtHover');
-                console.log("ok1");
-              }
-            }
-      });
-});
 
 //to load at the start of the DOM after it has been dynamically built
-var start = setInterval(function(){
-    console.log("Twitch Emotes Loading...");
+var start = setInterval(function() {
+  console.log("Reddit MTGCardFetcher Hovers Loading...");
+  if (document.getElementsByTagName("body").length > 0) {
 
-    if(document.getElementsByClassName("_6-xl _6-xm").length > 0){
+    //inject css
+    loadCSS('cardHover');
 
-      //set the messageList HTMLCollection
-      window.messageList = document.getElementsByClassName("_3oh- _58nk");
+    // the sublist
+    window.subRList
 
-      //get the emotes json
-      const jsonUrl = chrome.runtime.getURL('emotes.json');
-      fetch(jsonUrl)
-          .then((response) => response.json()) //assuming file contains json
-          .then((json) => saveJson(json));
+    // Select the node that will be observed for mutations
+    const targetNode = document.getElementsByTagName("body")[0];
+    window.alength = document.getElementsByTagName('a').length;
 
-      //MutationObserver for switching conversations
-      window.convoSwitchOB = new MutationObserver(function() {
-        setTimeout(function(){
-          if(window.emoteReplace){
-            replaceEmotes();
-          }
-          else {
-            tagEmotes();
-          }
-        }, 500);
-        classChanged();
-      });
-      var act = document.getElementsByClassName("_1ht2")[0];
-      window.convoSwitchOB.observe(act, {
-        attributes: true,
-        attributeFilter: ["class"]
-      });
+    // Options for the observer (which mutations to observe)
+    const config = {
+      attributes: true,
+      childList: true,
+      subtree: true
+    };
+
+    // Callback function to execute when mutations are observed
+    const observerCallback = function(mutationsList, observer) {
+      if (atLinks() && window.alength != document.getElementsByTagName('a').length) {
+        addCardHover();
+        window.alength = document.getElementsByTagName('a').length;
+      }
+    };
+
+    // Create an observer instance linked to the callback function
+    const observer = new MutationObserver(observerCallback);
+    // Start observing the target node for configured mutations
+    observer.observe(targetNode, config);
 
 
-      //the mutation observer for new messages
-      window.newMesssageOb = new MutationObserver(function() {
-        setTimeout(function(){
-          if(window.emoteReplace){
-            replaceEmotes();
-          }
-          else {
-            tagEmotes();
-          }
-        }, 500);
-      });
+    if (atLinks()) {
+      addCardHover();
+      console.log("Initial card hovers added.")
+    }
 
-      //implementing the observe for newMessageob
-      var newMOBSetter = setInterval(function(){
-          if(document.getElementsByClassName("_2k8v")[0] != null){
-            window.newMesssageOb.observe(document.getElementsByClassName("_2k8v")[0].nextSibling ,{
-              childList: true,
-              subtree: true
-            });
-            clearInterval(newMOBSetter);
-          }
-      }, 100);
-
-      //clears the start loop after successfully starting
-      clearInterval(start);
+    //clears the start loop after successfully starting
+    clearInterval(start);
   }
 
 }, 1000);

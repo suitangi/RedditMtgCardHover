@@ -1,0 +1,16 @@
+a:hover .cardHover {
+  display: initial;
+  position: fixed;
+  bottom: 0%;
+  right: 0%;
+  z-index: 6;
+}
+
+a .cardHover {
+  display: none;
+}
+
+a .cardHover img {
+  width: 300px;
+  border-radius: 6%;
+}

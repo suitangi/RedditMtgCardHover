@@ -6,22 +6,28 @@
 </head>
 
 <body>
-  <h1><img src="icons/icon16.png">  Emote Options:</h1>
-  <span title="Replaces text in messages as emotes (images).">
-    <h2>Emote Replacement:</h2>
-    <label class="switch">
-      <input type="checkbox" id="replaceSwitch">
-      <span class="slider round"></span>
-    </label>
+  <h1><img src="icons/icon16.png">MTGCardFetcher Hover Options:</h1>
+
+  <span title="Hover over emote for the text or hover over the text for emote (if emote replacement is off).">
+    <div class="slidecontainer">
+      <h2>Horizontal Position</h2>
+      <input type="range" min="0" max="100" value="100" class="rangeSlider" id="leftSlider">
+    </div>
   </span>
   <span title="Hover over emote for the text or hover over the text for emote (if emote replacement is off).">
-    <h2>Hover:</h2>
-    <label class="switch">
-      <input type="checkbox" id="hoverSwitch">
-      <span class="slider round"></span>
-    </label>
+    <div class="slidecontainer">
+      <h2>Vertical Position</h2>
+      <input type="range" min="0" max="100" value="100" class="rangeSlider" id="topSlider">
+    </div>
   </span>
-  <h3>Please be sure to refresh the Messenger page after changing the options here!</h3>
+  <span title="Hover over emote for the text or hover over the text for emote (if emote replacement is off).">
+    <div class="slidecontainer">
+      <h2>Size</h2>
+      <input type="range" min="100" max="500" value="90" class="rangeSlider" id="sizeSlider">
+    </div>
+  </span>
+
+  <h3>Please be sure to refresh the Reddit page after changing the options here!</h3>
 
   <script type="text/javascript" src="popup.js"></script>
 </body>
