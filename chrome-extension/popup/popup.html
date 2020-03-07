@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div ID="warning">
+    <h2 style="text-align: left;">MTGCardFetcher Hover can only effect Reddit. To change options, please visit <a href="https://www.reddit.com/">Reddit</a> or the <a href="" ID="optionsLink">Options page</a> for this extension.</h2>
+  </div>
+
+  <div ID="options">
+    <h1><img src="../icons/icon16.png">MTGCardFetcher<br> Hover Options:</h1>
+
+    <span title="Turn the card image hover on/off">
+      <h2>Hover</h2>
+      <label class="switch">
+        <input type="checkbox" id="onoffSwitch">
+        <span class="slider round"></span>
+      </label>
+    </span>
+    <!-- <span title="Hover over emote for the text or hover over the text for emote (if emote replacement is off).">
+    <h2>Hover:</h2>
+    <label class="switch">
+      <input type="checkbox" id="hoverSwitch">
+      <span class="slider round"></span>
+    </label>
+  </span> -->
+    <div class="menuItem" title="The horizontala location of the card image on the screen when the card link is hovered over.">
+      <div class="slidecontainer">
+        <h2>Horizontal Position</h2>
+        <input type="range" min="0" max="100" value="100" class="rangeSlider" id="leftSlider">
+      </div>
+    </div>
+    <div class="menuItem" title="The vertical location of the card image on the screen when the card link is hovered over.">
+      <div class="slidecontainer">
+        <h2>Vertical Position</h2>
+        <input type="range" min="0" max="100" value="100" class="rangeSlider" id="topSlider">
+      </div>
+    </div>
+    <div class="menuItem" title="The size of the card image.">
+      <div class="slidecontainer">
+        <h2>Size</h2>
+        <input type="range" min="100" max="500" value="300" class="rangeSlider" id="sizeSlider">
+      </div>
+    </div>
+
+  </div>
+  <script type="text/javascript" src="popup.js"></script>
+</body>
+
+</html>
