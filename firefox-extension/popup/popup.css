@@ -1,12 +1,13 @@
 body {
-  margin: 20px 50px;
+  width: 250px;
+  margin: 15px;
 }
 
 h1 {
   font-weight: 500;
-  font-size: 25px;
-  border-bottom: 1px solid rgba(60, 60, 60, 0.3);
-  padding-bottom: 20px;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 h2 {
@@ -24,7 +25,7 @@ h3 {
 }
 
 .menuItem {
-  width: 300px
+  margin-bottom: 10px;
 }
 
 /* The switch - the box around the slider */
@@ -90,48 +91,45 @@ input:checked+.slider:before {
   border-radius: 50%;
 }
 
+
 /* rangesliders */
-.slidecontainer {
-  margin-top: 10px;
-  margin-bottom: 35px;
-  width: 300px;
-}
+ .slidecontainer {
+   margin-top: 10px;
+   margin-bottom: 35px;
+   width: 90%;
+ }
 
-.rangeSlider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 4px;
-  border-radius: 4px;
-  background: #1e5687;
-  outline: none;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  opacity: 0.7;
-}
+ .rangeSlider {
+   -webkit-appearance: none;
+   width: 100%;
+   height: 4px;
+   border-radius: 4px;
+   background: #1e5687;
+   outline: none;
+   -webkit-transition: .2s;
+   transition: opacity .2s;
+   opacity: 0.7;
+ }
 
-.rangeSlider:hover {
-  opacity: 1;
-}
+ .rangeSlider:hover {
+   opacity: 1;
+ }
 
-.rangeSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #ddd;
-  cursor: pointer;
-}
+ .rangeSlider::-webkit-slider-thumb {
+   -webkit-appearance: none;
+   appearance: none;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background: #ddd;
+   cursor: pointer;
+ }
 
-/*for firefox*/
-.rangeSlider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #ddd;
-  cursor: pointer;
-}
-
-.menuItem {
-  margin-bottom: 10px;
-}
+ /*for firefox*/
+ .rangeSlider::-moz-range-thumb {
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background: #ddd;
+   cursor: pointer;
+ }
