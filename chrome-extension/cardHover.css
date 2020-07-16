@@ -1,14 +1,13 @@
 a:hover .cardHover {
   position: fixed !important;
   z-index: 100;
-  width:300px;
+  width: 300px;
 }
 
 a:not(:hover) .cardHover {
   position: fixed !important;
   display: none !important;
 }
-
 
 a .cardHover img {
   width: 100%;

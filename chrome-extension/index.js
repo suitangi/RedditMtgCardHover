@@ -26,10 +26,10 @@ function addCardHover() {
         let cardName = linkNode.innerHTML;
         let chNode = document.createElement("div");
         chNode.classList.add("cardHover");
-        chNode.style = (window.mtgCardAni? "opacity: 0;" : "") + "display:none;";
+        chNode.style = (window.mtgCardAni ? "opacity: 0;" : "") + "display:none;";
         linkNode.addEventListener("mouseenter", function(e) {
-          if (window.mtgCardHover){
-              this.firstElementChild.style =
+          if (window.mtgCardHover) {
+            this.firstElementChild.style =
               "top:" + e.clientY + "px;" +
               "left: " + e.clientX + "px;" +
               "width: " + window.mtgCardSize + "px;";
@@ -90,7 +90,7 @@ var start = setInterval(function() {
     //hoverPref [top (%), left (%), size (100 - 500 px)]
     chrome.storage.local.get({
       size: 300,
-      hover: 'on',
+      hover: 'on'
     }, function(data) {
       window.mtgCardSize = data.size;
       window.mtgCardHover = data.hover == 'on';
