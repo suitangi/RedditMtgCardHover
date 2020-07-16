@@ -1,12 +1,11 @@
 a:hover .cardHover {
-  display: initial !important;
-  top: 100%;
-  left: 100%;
+  position: fixed !important;
   z-index: 100;
   width:300px;
 }
 
 a:not(:hover) .cardHover {
+  position: fixed !important;
   display: none !important;
 }
 
@@ -15,8 +14,4 @@ a .cardHover img {
   width: 100%;
   border-radius: 6%;
   cursor: default;
-}
-
-a:hover .cardHover.hoverDisabled {
-  display: none !important;
 }

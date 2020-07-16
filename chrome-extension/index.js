@@ -26,12 +26,14 @@ function addCardHover() {
         let cardName = linkNode.innerHTML;
         let chNode = document.createElement("div");
         chNode.classList.add("cardHover");
+        chNode.style = (window.mtgCardAni? "opacity: 0;" : "") + "display:none;";
         linkNode.addEventListener("mouseenter", function(e) {
-          this.firstElementChild.style =
-          "position: absolute;" +
-          "top:" + e.pageY + "px;" +
-          "left: " + e.pageX + "px;" +
-          "width: " + window.mtgCardSize + "px;";
+          if (window.mtgCardHover){
+              this.firstElementChild.style =
+              "top:" + e.clientY + "px;" +
+              "left: " + e.clientX + "px;" +
+              "width: " + window.mtgCardSize + "px;";
+          }
         });
         let imgNode = document.createElement("img");
         imgNode.setAttribute("src", linkNode.getAttribute("href"));
@@ -41,20 +43,6 @@ function addCardHover() {
         console.log(cardName + ": Hover Added");
       }
       alist[i].classList.add("cardHoverChecked");
-    }
-  }
-}
-
-//function to set the hover on/off
-function toggleHover(hoverOn) {
-  hoverList = document.getElementsByClassName('cardHover');
-  if (hoverOn) {
-    for (i = 0; i < hoverList.length; i++) {
-      hoverList[i].classList.remove("hoverDisabled");
-    }
-  } else {
-    for (i = 0; i < hoverList.length; i++) {
-      hoverList[i].classList.add("hoverDisabled");
     }
   }
 }
@@ -71,8 +59,6 @@ function atLinks() {
 }
 
 ///////////////////////////////////Start the scripts///////////////////////////////////
-//load the storage variables
-
 //to load at the start of the DOM after it has been dynamically built
 var start = setInterval(function() {
   console.log("Reddit MTGCardFetcher Hovers Loading...");
@@ -104,9 +90,10 @@ var start = setInterval(function() {
     //hoverPref [top (%), left (%), size (100 - 500 px)]
     chrome.storage.local.get({
       size: 300,
-      hover: 'on'
+      hover: 'on',
     }, function(data) {
       window.mtgCardSize = data.size;
+      window.mtgCardHover = data.hover == 'on';
 
       // initializing anchor tag list length
       window.alength = 0;
@@ -130,10 +117,7 @@ var start = setInterval(function() {
       // checks if we're on specified subreddits/parts of reddit
       if (atLinks()) {
         addCardHover();
-        console.log("Initial card hovers added.")
-        if (data.hover == 'off') {
-          toggleHover(false);
-        }
+        console.log("Initial card hovers added.");
       }
     });
 
