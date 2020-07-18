@@ -1,19 +1,16 @@
 //updates the preferences; called when rangeSliders are accessed
 function updateCardHover() {
-  let topVal = document.getElementById("topSlider").value;
-  let leftVal = document.getElementById("leftSlider").value;
   let sizeVal = document.getElementById("sizeSlider").value;
 
-  browser.tabs.query({
+  chrome.tabs.query({
     url: ['*://www.reddit.com/*']
   }, function(tabs) {
-    for (i = 0; i < tabs.length; i++) browser.tabs.sendMessage(tabs[i].id, {
-      "popupStyle": [topVal, leftVal, sizeVal]
+    for (i = 0; i < tabs.length; i++) chrome.tabs.sendMessage(tabs[i].id, {
+      "popupStyle": sizeVal
     });
   });
-  let arr = [topVal, leftVal, sizeVal]
-  browser.storage.local.set({
-    hoverPref: arr
+  chrome.storage.local.set({
+    size: sizeVal
   }, function() {});
 }
 
@@ -21,19 +18,19 @@ function updateCardHover() {
 function updateHover() {
   if (document.getElementById("onoffSwitch").checked) {
     document.getElementById("onoffSwitch").checked = false;
-    browser.storage.local.set({
+    chrome.storage.local.set({
       hover: "off"
     }, function() {});
   } else {
     document.getElementById("onoffSwitch").checked = true;
-    browser.storage.local.set({
+    chrome.storage.local.set({
       hover: "on"
     }, function() {});
   }
-  browser.tabs.query({
+  chrome.tabs.query({
     url: ['*://www.reddit.com/*']
   }, function(tabs) {
-    for (i = 0; i < tabs.length; i++) browser.tabs.sendMessage(tabs[i].id, {
+    for (i = 0; i < tabs.length; i++) chrome.tabs.sendMessage(tabs[i].id, {
       "hover": document.getElementById("onoffSwitch").checked
     });
   });
@@ -41,7 +38,7 @@ function updateHover() {
 
 
 //get the data for on off
-browser.storage.local.get({
+chrome.storage.local.get({
   hover: 'on'
 }, function(data) {
 
@@ -58,24 +55,18 @@ document.getElementById("onoffSwitch").parentElement.addEventListener('click', f
 });
 
 //Listener for the rangeSliders
-document.getElementById("leftSlider").addEventListener("input", function() {
-  updateCardHover();
-});
-document.getElementById("topSlider").addEventListener("input", function() {
-  updateCardHover();
-});
 document.getElementById("sizeSlider").addEventListener("input", function() {
   updateCardHover();
 });
 document.getElementById("optionsLink").addEventListener("click", function() {
-  browser.runtime.openOptionsPage();
+  chrome.runtime.openOptionsPage();
 });
 
 //display different content based on active tab (if it's on reddit or not)
 document.getElementById("warning").style = "display:none;";
 document.getElementById("options").style = "display:none;";
 
-browser.tabs.query({
+chrome.tabs.query({
   'active': true,
   'lastFocusedWindow': true
 }, function(tabs) {
@@ -86,12 +77,10 @@ browser.tabs.query({
     document.getElementById("options").style = "";
 
     //load preference data and set the rangesliders accordingly
-    browser.storage.local.get({
-      hoverPref: [100, 100, 300]
+    chrome.storage.local.get({
+      size: 300
     }, function(data) {
-      document.getElementById("topSlider").value = data.hoverPref[0];
-      document.getElementById("leftSlider").value = data.hoverPref[1];
-      document.getElementById("sizeSlider").value = data.hoverPref[2];
+      document.getElementById("sizeSlider").value = data.size;
     });
 
   } else {

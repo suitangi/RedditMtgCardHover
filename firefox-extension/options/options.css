@@ -132,24 +132,6 @@ input:checked+.slider:before {
   cursor: pointer;
 }
 
-.menuItem:hover .cardHover {
-  display: initial !important;
-  position: fixed;
-  top: 100%;
-  left: 100%;
-  transform: translate(-100%, -100%);
-  z-index: 6;
-}
-
-.cardHover {
-  display: none;
-}
-
-.cardHoverImg {
-  width: 300px;
-  border-radius: 6%;
-}
-
 .menuItem {
   margin-bottom: 10px;
 }
