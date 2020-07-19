@@ -54,7 +54,7 @@ This project is also free and does not collect any user data whatsoever.
 
 ## Change Log
 ```
-v1.2.3 Icon update and minor adjustments.
+v1.2.3 Icon update and major fixes for new Reddit layout.
 v1.2.2 More bug fixes.
 v1.2.1 Bug fixes with options and hovering.
 v1.2.0 Major adjustments and hover is over mouse position now.
