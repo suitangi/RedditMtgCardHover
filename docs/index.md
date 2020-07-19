@@ -1,4 +1,3 @@
-# RedditMtgCardHover
 
 ![Screengif](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/reddithover.gif)
 
@@ -55,7 +54,7 @@ This project is also free and does not collect any user data whatsoever.
 **Permissions required**:
 - `old.reddit.com`
 - `www.reddit.com`
-- `storage` for user preferences
+- `storage`
 
 ## Change Log
 ```
