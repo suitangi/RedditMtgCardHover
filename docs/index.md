@@ -7,12 +7,14 @@ A browser extension that adds a hover option for Reddit's u/MtgCardFetcher bot.
 
 ## Using this extension
 
+#### User
 You can download the extension/add on here:
 - [Chrome]()
 - [Firefox]()
 
 
-Or, if you're a developer, you can clone this repository
+#### Developer
+You can clone this repository
 ```
 git clone https://github.com/suitangi/RedditMtgCardHover.git
 ```
