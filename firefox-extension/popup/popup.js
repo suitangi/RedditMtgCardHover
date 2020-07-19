@@ -2,14 +2,14 @@
 function updateCardHover() {
   let sizeVal = document.getElementById("sizeSlider").value;
 
-  chrome.tabs.query({
+  browser.tabs.query({
     url: ['*://www.reddit.com/*']
   }, function(tabs) {
-    for (i = 0; i < tabs.length; i++) chrome.tabs.sendMessage(tabs[i].id, {
+    for (i = 0; i < tabs.length; i++) browser.tabs.sendMessage(tabs[i].id, {
       "popupStyle": sizeVal
     });
   });
-  chrome.storage.local.set({
+  browser.storage.local.set({
     size: sizeVal
   }, function() {});
 }
@@ -18,19 +18,19 @@ function updateCardHover() {
 function updateHover() {
   if (document.getElementById("onoffSwitch").checked) {
     document.getElementById("onoffSwitch").checked = false;
-    chrome.storage.local.set({
+    browser.storage.local.set({
       hover: "off"
     }, function() {});
   } else {
     document.getElementById("onoffSwitch").checked = true;
-    chrome.storage.local.set({
+    browser.storage.local.set({
       hover: "on"
     }, function() {});
   }
-  chrome.tabs.query({
-    url: ['*://www.reddit.com/*']
+  browser.tabs.query({
+    url: ['*://www.reddit.com/*', "*://old.reddit.com/*"]
   }, function(tabs) {
-    for (i = 0; i < tabs.length; i++) chrome.tabs.sendMessage(tabs[i].id, {
+    for (i = 0; i < tabs.length; i++) browser.tabs.sendMessage(tabs[i].id, {
       "hover": document.getElementById("onoffSwitch").checked
     });
   });
@@ -38,7 +38,7 @@ function updateHover() {
 
 
 //get the data for on off
-chrome.storage.local.get({
+browser.storage.local.get({
   hover: 'on'
 }, function(data) {
 
@@ -59,14 +59,14 @@ document.getElementById("sizeSlider").addEventListener("input", function() {
   updateCardHover();
 });
 document.getElementById("optionsLink").addEventListener("click", function() {
-  chrome.runtime.openOptionsPage();
+  browser.runtime.openOptionsPage();
 });
 
 //display different content based on active tab (if it's on reddit or not)
 document.getElementById("warning").style = "display:none;";
 document.getElementById("options").style = "display:none;";
 
-chrome.tabs.query({
+browser.tabs.query({
   'active': true,
   'lastFocusedWindow': true
 }, function(tabs) {
@@ -77,7 +77,7 @@ chrome.tabs.query({
     document.getElementById("options").style = "";
 
     //load preference data and set the rangesliders accordingly
-    chrome.storage.local.get({
+    browser.storage.local.get({
       size: 300
     }, function(data) {
       document.getElementById("sizeSlider").value = data.size;

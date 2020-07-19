@@ -3,14 +3,14 @@
 function updateCardHover() {
   let sizeVal = document.getElementById("sizeSlider").value;
 
-  chrome.tabs.query({
+  browser.tabs.query({
     url: ['*://www.reddit.com/*']
   }, function(tabs) {
-    for (i = 0; i < tabs.length; i++) chrome.tabs.sendMessage(tabs[i].id, {
+    for (i = 0; i < tabs.length; i++) browser.tabs.sendMessage(tabs[i].id, {
       "style": sizeVal
     });
   });
-  chrome.storage.local.set({
+  browser.storage.local.set({
     size: sizeVal
   }, function() {});
 }
@@ -20,26 +20,26 @@ function updateCardHover() {
 function updateHover() {
   if (document.getElementById("onoffSwitch").checked) {
     document.getElementById("onoffSwitch").checked = false;
-    chrome.storage.local.set({
+    browser.storage.local.set({
       hover: "off"
     }, function() {});
   } else {
     document.getElementById("onoffSwitch").checked = true;
-    chrome.storage.local.set({
+    browser.storage.local.set({
       hover: "on"
     }, function() {});
   }
-  chrome.tabs.query({
+  browser.tabs.query({
     url: ['*://www.reddit.com/*']
   }, function(tabs) {
-    for (i = 0; i < tabs.length; i++) chrome.tabs.sendMessage(tabs[i].id, {
+    for (i = 0; i < tabs.length; i++) browser.tabs.sendMessage(tabs[i].id, {
       "hover": document.getElementById("onoffSwitch").checked
     });
   });
 }
 
 //load preference data and set the rangesliders accordingly
-chrome.storage.local.get({
+browser.storage.local.get({
   hoverPref: [100, 100, 300]
 }, function(data) {
   document.getElementById("sizeSlider").value = data.size;
@@ -47,7 +47,7 @@ chrome.storage.local.get({
 });
 
 //get the data for on off
-chrome.storage.local.get({
+browser.storage.local.get({
   hover: 'on'
 }, function(data) {
 

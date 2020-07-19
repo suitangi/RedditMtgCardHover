@@ -1,7 +1,7 @@
 //loads css file
 function loadCSS(file) {
   var link = document.createElement("link");
-  link.href = chrome.extension.getURL(file + '.css');
+  link.href = browser.extension.getURL(file + '.css');
   link.id = file;
   link.type = "text/css";
   link.rel = "stylesheet";
@@ -16,6 +16,12 @@ function unloadCSS(file) {
 
 //function to add card hovers
 function addCardHover() {
+  let imgNodes = document.getElementById("MTGHoverImages");
+  if (imgNodes == null) {
+    imgNodes = document.createElement("div");
+    targetNode.appendChild(imgNodes);
+    imgNodes.id = "MTGHoverImages";
+  }
   let alist = document.getElementsByTagName('a');
   for (var i = 0; i < alist.length; i++) {
     if (!alist[i].classList.contains("cardHoverChecked")) {
@@ -25,22 +31,49 @@ function addCardHover() {
         let linkNode = alist[i];
         let cardName = linkNode.innerHTML;
         let chNode = document.createElement("div");
+        linkNode.setAttribute('data-card', cardName);
         chNode.classList.add("cardHover");
         chNode.style = (window.mtgCardAni ? "opacity: 0;" : "") + "display:none;";
+        chNode.id = cardName;
         linkNode.addEventListener("mouseenter", function(e) {
-          if (window.mtgCardHover) {
-            this.firstElementChild.style =
+          if (window.RedditMTG.cardHover) {
+            // console.log("Entered: " + this.getAttribute('data-card'));
+            window.RedditMTG.linkEntered = true;
+            let outOfWin = (window.RedditMTG.cardSize * 1.4 + e.clientY) > window.innerHeight;
+            document.getElementById(this.getAttribute('data-card')).style =
               "top:" + e.clientY + "px;" +
               "left: " + e.clientX + "px;" +
-              "width: " + window.mtgCardSize + "px;";
+              "width: " + window.RedditMTG.cardSize + "px;" +
+              (outOfWin? "transform: translateY(-100%);" : "");
           }
+        });
+        linkNode.addEventListener("mouseleave", function(e) {
+          // console.log("Left: " + this.getAttribute('data-card'));
+          window.RedditMTG.linkEntered = false;
+          document.getElementById(this.getAttribute('data-card')).style = "display: none;";
+        });
+        chNode.addEventListener("mouseenter", function(e) {
+          let outOfWin = (window.RedditMTG.cardSize * 1.4 + e.clientY) > window.innerHeight;
+          this.style =
+            "top:" + e.clientY + "px;" +
+            "left: " + e.clientX + "px;" +
+            "width: " + window.RedditMTG.cardSize + "px;" +
+            (outOfWin? "transform: translateY(-100%);" : "");
+          window.RedditMTG.imgEntered = true;
+        });
+        chNode.addEventListener("mouseleave", function(e) {
+          // console.log("Card Left");
+          if (!window.RedditMTG.linkEntered) {
+            this.style = "display: none;";
+          }
+          window.RedditMTG.imgEntered = true;
         });
         let imgNode = document.createElement("img");
         imgNode.setAttribute("src", linkNode.getAttribute("href"));
         chNode.appendChild(imgNode);
-        linkNode.appendChild(chNode);
+        imgNodes.appendChild(chNode);
 
-        console.log(cardName + ": Hover Added");
+        //console.log(cardName + ": Hover Added");
       }
       alist[i].classList.add("cardHoverChecked");
     }
@@ -64,17 +97,17 @@ var start = setInterval(function() {
   console.log("Reddit MTGCardFetcher Hovers Loading...");
   //only continue if document body has been built
   if (document.getElementsByTagName("body").length > 0) {
-
+    window.RedditMTG = {};
     // listen for changes from popup and options
-    chrome.runtime.onMessage.addListener(
+    browser.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
         //style update message from options
         if (request.style !== undefined) {
-          window.mtgCardSize = request.style;
+          window.RedditMTG.cardSize = request.style;
         }
         //style update message from popup
         if (request.popupStyle !== undefined) {
-          window.mtgCardSize = request.popupStyle;
+          window.RedditMTG.cardSize = request.popupStyle;
         }
         if (request.hover !== undefined) {
           console.log(request.hover);
@@ -88,12 +121,12 @@ var start = setInterval(function() {
 
     //load chrome storage data for preferences/does adding hovers in callback
     //hoverPref [top (%), left (%), size (100 - 500 px)]
-    chrome.storage.local.get({
+    browser.storage.local.get({
       size: 300,
       hover: 'on'
     }, function(data) {
-      window.mtgCardSize = data.size;
-      window.mtgCardHover = data.hover == 'on';
+      window.RedditMTG.cardSize = data.size;
+      window.RedditMTG.cardHover = data.hover == 'on';
 
       // initializing anchor tag list length
       window.alength = 0;
@@ -105,6 +138,9 @@ var start = setInterval(function() {
         childList: true,
         subtree: true
       };
+      let imgNodes = document.createElement("div");
+      targetNode.appendChild(imgNodes);
+      imgNodes.id = "MTGHoverImages";
       const observerCallback = function(mutationsList, observer) {
         if (atLinks() && window.alength != document.getElementsByTagName('a').length) {
           addCardHover();

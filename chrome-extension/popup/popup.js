@@ -28,7 +28,7 @@ function updateHover() {
     }, function() {});
   }
   chrome.tabs.query({
-    url: ['*://www.reddit.com/*']
+    url: ['*://www.reddit.com/*', "*://old.reddit.com/*"]
   }, function(tabs) {
     for (i = 0; i < tabs.length; i++) chrome.tabs.sendMessage(tabs[i].id, {
       "hover": document.getElementById("onoffSwitch").checked
