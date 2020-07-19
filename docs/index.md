@@ -45,8 +45,7 @@ Contact me if there's another subreddit that should be added!
 ## Contributing
 If you like this extension, feel free to contribute code or suggest possible functionalities and options!
 
-Special thanks to my beta tester:
-- [G-Jayakar](https://github.com/G-Jayakar)
+If you like this project and would like to buy me a drink you can do so [here](https://www.buymeacoffee.com/suitangi).
 
 ## Disclaimer
 This extension is a third-party project and has no affiliation with Reddit nor Wizards of the Coast.
