@@ -1,4 +1,4 @@
-# RedditMtgCardHover
+# ![icon](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/icon.png) RedditMtgCardHover
 A browser extension that adds a hover option for Reddit's u/MtgCardFetcher bot.
 
 ![Screengif](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/reddithover.gif)

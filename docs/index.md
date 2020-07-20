@@ -3,27 +3,16 @@
 
 *Note*: This extension works with both New Reddit and Old Reddit.
 
-## Using this extension
+## ![icon](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/icon.png) Using this extension
 
-#### User
-You can download the extension/add on here:
+### Users
+You can download the extension/add-on here:
 - [Chrome](https://chrome.google.com/webstore/detail/reddit-mtgcardfetcher-hov/lgolghfbfjpegcdaneojpnaccppdacbi)
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/reddit-mtgcardfetcher-hover/)
 
 
-#### Developer
-You can clone this repository
-```
-git clone https://github.com/suitangi/RedditMtgCardHover.git
-```
-
-or download the latest release [here](https://github.com/suitangi/RedditMtgCardHover/releases).
-
-
-Then you can load the unpacked extension in either `firefox-extension` or the `chrome-extension` directory (depending on your browser type).
-See more instructions here:
-- [Chrome](https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/)
-- [Firefox](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/)
+### Developers
+Check out the [Github Project page](https://github.com/suitangi/RedditMtgCardHover)
 
 
 ## Options
