@@ -26,7 +26,7 @@ function addCardHover() {
   for (var i = 0; i < alist.length; i++) {
     if (!alist[i].classList.contains("cardHoverChecked")) {
       if (alist[i].getAttribute("href") != null &&
-        (alist[i].getAttribute("href").includes("img.scryfall.com/cards") ||
+        (alist[i].getAttribute("href").includes("c1.scryfall.com/file/") ||
           alist[i].getAttribute("href").includes("gatherer.wizards.com/Handlers/Image"))) {
         let linkNode = alist[i];
         let cardName = linkNode.innerHTML;
@@ -37,7 +37,7 @@ function addCardHover() {
         chNode.id = cardName;
         linkNode.addEventListener("mouseenter", function(e) {
           if (window.RedditMTG.cardHover) {
-            // console.log("Entered: " + this.getAttribute('data-card'));
+            //console.log("Entered: " + this.getAttribute('data-card'));
             window.RedditMTG.linkEntered = true;
             let outOfWin = (window.RedditMTG.cardSize * 1.4 + e.clientY) > window.innerHeight;
             document.getElementById(this.getAttribute('data-card')).style =
@@ -73,7 +73,7 @@ function addCardHover() {
         chNode.appendChild(imgNode);
         imgNodes.appendChild(chNode);
 
-        //console.log(cardName + ": Hover Added");
+        console.log(cardName + ": Hover Added");
       }
       alist[i].classList.add("cardHoverChecked");
     }
@@ -82,10 +82,13 @@ function addCardHover() {
 
 //function at specified links
 function atLinks() {
-  linklist = ["239MTG", "affinityforartifacts", "alliesmtg", "AllStandards", "Alphabetter", "Amonkhet", "architectMTG", "ArclightPhoenixMTG", "aristocratsMTG", "BadMTGCombos", "basementboardgames", "BaSE_MtG", "BudgetBrews", "budgetdecks", "BulkMagic", "cardsphere", "casualmtg", "CatsPlayingMTG", "CircuitContest", "cocomtg", "CompetitiveEDH", "custommagic", "DeckbuildingPrompts", "edh", "EDHug", "EggsMTG", "ElvesMTG", "enchantress", "EsperMagic", "findmycard", "fishmtg", "FlickerMTG", "freemagic", "goblinsMTG", "HamiltonMTG", "HardenedScales", "humansmtg", "infect", "johnnys", "kikichord", "lanternmtg", "lavaspike", "locketstorm", "lrcast", "magicarena", "Magicdeckbuilding", "MagicDuels", "magicTCG", "magicTCG101", "MakingMagic", "marchesatheblackrose", "marduMTG", "MentalMentalMagic", "millMTG", "ModernLoam", "modernmagic", "ModernRecMTG", "modernspikes", "ModernZombies", "monobluemagic", "mtg", "MTGAngels", "mtgbattlebox", "mtgbracket", "mtgbrawl", "mtgbudgetmodern", "mtgcardfetcher", "mtgcube", "MTGDredge", "mtgfinalfrontier", "mtgfinance", "mtgfrontier", "mtglegacy", "MTGManalessDredge", "MTGMaverick", "mtgmel", "mtgrules", "mtgspirits", "mtgtreefolk", "mtgvorthos", "neobrand", "nicfitmtg", "oathbreaker_mtg", "oldschoolmtg", "pauper", "PauperArena", "PauperEDH", "peasantcube", "PennyDreadfulMTG", "PioneerMTG", "planeshiftmtg", "ponzamtg", "RatsMTG", "RealLifeMTG", "RecklessBrewery", "rpg_brasil", "scapeshift", "shittyjudgequestions", "sistersmtg", "skredred", "Sligh", "spikes", "stoneblade", "StrangeBrewEDH", "SuperUltraBudgetEDH", "therandomclub", "Thoptersword", "threecardblind", "TinyLeaders", "TronMTG", "UBFaeries", "uwcontrol", "xmage", "reddit.com/message", "reddit.com/user/MTGCardFetcher"]
+
+  let linklist = ["239MTG", "affinityforartifacts", "alliesmtg", "AllStandards", "Alphabetter", "Amonkhet", "architectMTG", "ArclightPhoenixMTG", "aristocratsMTG", "BadMTGCombos", "basementboardgames", "BaSE_MtG", "BudgetBrews", "budgetdecks", "BulkMagic", "cardsphere", "casualmtg", "CatsPlayingMTG", "CircuitContest", "cocomtg", "CompetitiveEDH", "custommagic", "DeckbuildingPrompts", "edh", "EDHug", "EggsMTG", "ElvesMTG", "enchantress", "EsperMagic", "findmycard", "fishmtg", "FlickerMTG", "freemagic", "goblinsMTG", "HamiltonMTG", "HardenedScales", "humansmtg", "infect", "johnnys", "kikichord", "lanternmtg", "lavaspike", "locketstorm", "lrcast", "magicarena", "Magicdeckbuilding", "MagicDuels", "magicTCG", "magicTCG101", "MakingMagic", "marchesatheblackrose", "marduMTG", "MentalMentalMagic", "millMTG", "ModernLoam", "modernmagic", "ModernRecMTG", "modernspikes", "ModernZombies", "monobluemagic", "mtg", "MTGAngels", "mtgbattlebox", "mtgbracket", "mtgbrawl", "mtgbudgetmodern", "mtgcardfetcher", "mtgcube", "MTGDredge", "mtgfinalfrontier", "mtgfinance", "mtgfrontier", "mtglegacy", "MTGManalessDredge", "MTGMaverick", "mtgmel", "mtgrules", "mtgspirits", "mtgtreefolk", "mtgvorthos", "neobrand", "nicfitmtg", "oathbreaker_mtg", "oldschoolmtg", "pauper", "PauperArena", "PauperEDH", "peasantcube", "PennyDreadfulMTG", "PioneerMTG", "planeshiftmtg", "ponzamtg", "RatsMTG", "RealLifeMTG", "RecklessBrewery", "rpg_brasil", "scapeshift", "shittyjudgequestions", "sistersmtg", "skredred", "Sligh", "spikes", "stoneblade", "StrangeBrewEDH", "SuperUltraBudgetEDH", "therandomclub", "Thoptersword", "threecardblind", "TinyLeaders", "TronMTG", "UBFaeries", "uwcontrol", "xmage", "reddit.com/message", "reddit.com/user/MTGCardFetcher"]
+
+  let here = location.href.toLowerCase();
 
   for (j = 0; j < linklist.length; j++) {
-    if (location.href.toLowerCase().includes(linklist[j].toLowerCase()))
+    if (here.includes(linklist[j].toLowerCase()))
       return true;
   }
   return false;
@@ -93,14 +96,17 @@ function atLinks() {
 
 ///////////////////////////////////Start the scripts///////////////////////////////////
 //to load at the start of the DOM after it has been dynamically built
-var start = setInterval(function() {
+window.startRMTG = setInterval(function() {
   console.log("Reddit MTGCardFetcher Hovers Loading...");
+
   //only continue if document body has been built
   if (document.getElementsByTagName("body").length > 0) {
     window.RedditMTG = {};
+
     // listen for changes from popup and options
     chrome.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
+
         //style update message from options
         if (request.style !== undefined) {
           window.RedditMTG.cardSize = request.style;
@@ -153,12 +159,13 @@ var start = setInterval(function() {
       // checks if we're on specified subreddits/parts of reddit
       if (atLinks()) {
         addCardHover();
-        console.log("Initial card hovers added.");
+        console.log("Initial card hovers added (RedditMTGCardHover) " + chrome.runtime.getManifest().version);
       }
     });
 
     //clears the start loop after successfully starting
-    clearInterval(start);
+    clearInterval(window.startRMTG);
+    console.log(window.startRMTG)
   }
 
 }, 1000);
