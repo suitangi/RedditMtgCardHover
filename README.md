@@ -25,6 +25,7 @@ See more instructions here:
 - Double click on a card to go to its Scryfall page
 - Drag the bottom right corner of a card to resize
   - This card size is saved as a preference and used across all cards
+  
 ![Draggif](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/drag.gif)
 
 ## List of Subreddits
