@@ -1,19 +1,17 @@
 {
   "name": "Reddit MTGCardFetcher Hover",
-  "version": "1.2.4",
+  "version": "2.0.0",
   "short_name": "Reddit MTGCard Hover",
   "description": "Shows the card image after mouse hover for MTGCardFetcher bot on Reddit.",
   "manifest_version": 3,
-  "permissions": ["*://www.reddit.com/*", "*://old.reddit.com/*",  "storage"],
+  "permissions": ["storage"],
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "options_page": "options/options.html",
-  "browser_action": {
-    "default_icon": "icons/default-icon.png",
-    "default_popup": "popup/popup.html"
+  "action": {
+    "default_icon": "icons/default-icon.png"
   },
   "content_scripts": [{
     "matches": ["*://www.reddit.com/*", "*://old.reddit.com/*"],
@@ -21,5 +19,8 @@
     "js": ["index.js"],
     "all_frames": true
   }],
-  "web_accessible_resources": ["index.js", "cardHover.css"]
+  "web_accessible_resources": [{
+    "resources": ["index.js", "cardHover.css"],
+    "matches": ["*://www.reddit.com/*", "*://old.reddit.com/*"]
+  }]
 }

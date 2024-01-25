@@ -1,18 +1,13 @@
 # ![icon](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/icon.png) RedditMtgCardHover
-A browser extension that adds a hover option for Reddit's u/MtgCardFetcher bot.
+A lightweight browser extension that adds a hover option for Reddit's u/MtgCardFetcher bot.
 
 ![Screengif](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/reddithover.gif)
 
-*Note*: This extension works with both New Reddit and Old Reddit.
+This extension works with both New Reddit and Old Reddit.
 
 ## Using this extension
 
-You can download the extension/add on here:
-- [Chrome](https://chrome.google.com/webstore/detail/reddit-mtgcardfetcher-hov/lgolghfbfjpegcdaneojpnaccppdacbi)
-- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/reddit-mtgcardfetcher-hover/)
-
-
-Or, if you're a developer, you can clone this repository
+Clone this repository
 ```
 git clone https://github.com/suitangi/RedditMtgCardHover.git
 ```
@@ -27,13 +22,10 @@ See more instructions here:
 
 
 ## Options
-![Screenshot](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/Options.png)
-
-The preference options for this extension are:
-- **Hover**: Turns the mouse hover function on/off
-- **Size**: Adjusts the size of the card image upon mouseover of the card link
-
-These options can be adjusted in the options page of the extension or the popup button.
+- Double click on a card to go to its Scryfall page
+- Drag the bottom right corner of a card to resize
+  - This card size is saved as a preference and used across all cards
+![Draggif](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/drag.gif)
 
 ## List of Subreddits
 This is the list of subreddits that this extension works on:
@@ -50,15 +42,14 @@ Special thanks to my beta tester:
 
 ## Disclaimer
 This extension is a third-party project and has no affiliation with Reddit nor Wizards of the Coast.
-This project is also free and does not collect any user data whatsoever.
+This project is also free and does not collect any user data.
 
 **Permissions required**:
-- `old.reddit.com`
-- `www.reddit.com`
 - `storage` for user preferences
 
 ## Change Log
 ```
+v2.0.0 Updated to manifest 3, removed popup and options, added double click to Scryfall and bottom right corner resizing
 v1.2.3 Icon update and major fixes for new Reddit layout.
 v1.2.2 More bug fixes.
 v1.2.1 Bug fixes with options and hovering.
