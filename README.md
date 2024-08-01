@@ -25,7 +25,7 @@ See more instructions here:
 - Double click on a card to go to its Scryfall page
 - Drag the bottom right corner of a card to resize
   - This card size is saved as a preference and used across all cards
-  
+
 ![Draggif](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/drag.gif)
 
 ## List of Subreddits
@@ -36,14 +36,14 @@ This is the list of subreddits that this extension works on:
 Contact me if there's another subreddit that should be added!
 
 ## Contributing
-If you like this extension, feel free to contribute code or suggest possible functionalities and options!
+If you like this extension, feel free to contribute code or suggest possible functionalities by opening an issue.
 
 Special thanks to my beta tester:
 - [G-Jayakar](https://github.com/G-Jayakar)
 
 ## Disclaimer
 This extension is a third-party project and has no affiliation with Reddit nor Wizards of the Coast.
-This project is also free and does not collect any user data.
+This project is also free, open sourced and collects no user data.
 
 **Permissions required**:
 - `storage` for user preferences

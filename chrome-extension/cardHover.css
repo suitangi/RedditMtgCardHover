@@ -18,6 +18,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
+  transform: translate(20%, -80%);
   opacity: 0;
   background: #00ffc2;
 }
