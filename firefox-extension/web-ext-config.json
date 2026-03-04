@@ -1,0 +1,24 @@
+{
+  "sourceDir": "./",
+  "artifactsDir": "./web-ext-artifacts/",
+  "build": {
+    "overwriteDest": true,
+    "filename": "reddit-mtg-cardhover-{version}.zip"
+  },
+  "run": {
+    "startUrl": ["https://www.reddit.com/r/magicTCG", "https://www.reddit.com/r/EDH"],
+    "pref": {
+      "xpinstall.signatures.required": false,
+      "extensions.experiments.enabled": true
+    },
+    "keepProfileChanges": true,
+    "profileCreateIfMissing": true
+  },
+  "lint": {
+    "output": "text"
+  },
+  "sign": {
+    "channel": "unlisted",
+    "timeout": 120000
+  }
+}

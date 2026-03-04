@@ -1,0 +1,39 @@
+{
+  "name": "reddit-mtg-cardhover-chrome",
+  "version": "2.1.0",
+  "description": "Shows the card image after mouse hover for MTGCardFetcher bot on Reddit - Chrome Extension",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && npm run copy-simple && npm run zip",
+    "clean": "rimraf dist",
+    "copy-simple": "node scripts/copy.js",
+    "zip": "cd dist && node ../scripts/zip.js",
+    "dev": "npm run copy-simple && echo 'Load dist/ folder as unpacked extension in Chrome'",
+    "lint": "echo 'Chrome extension linting - use Chrome DevTools'",
+    "prebuild": "npm run clean",
+    "pack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suitangi/RedditMtgCardHover"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "reddit",
+    "mtg",
+    "magic-the-gathering",
+    "card",
+    "hover",
+    "scryfall"
+  ],
+  "author": "suitangi",
+  "license": "MIT",
+  "devDependencies": {
+    "rimraf": "^5.0.0",
+    "archiver": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

@@ -1,52 +1,146 @@
-# ![icon](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/icon.png) RedditMtgCardHover
-A lightweight browser extension that adds a hover option for Reddit's u/MtgCardFetcher bot.
+# Reddit MTG Card Hover
 
-![Screengif](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/reddithover.gif)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/icon.png" alt="Extension Icon" width="128">
+</p>
 
-This extension works with both New Reddit and Old Reddit.
+<p align="center">
+  <strong>A lightweight browser extension that adds hover card previews for Reddit's u/MtgCardFetcher bot</strong>
+</p>
 
-## Using this extension
+<p align="center">
+  <a href="https://github.com/suitangi/RedditMtgCardHover/releases/latest">
+    <img src="https://img.shields.io/github/v/release/suitangi/RedditMtgCardHover?style=for-the-badge&logo=github" alt="Latest Release">
+  </a>
+  <a href="https://github.com/suitangi/RedditMtgCardHover/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/suitangi/RedditMtgCardHover?style=for-the-badge" alt="License">
+  </a>
+  <a href="https://github.com/suitangi/RedditMtgCardHover/stargazers">
+    <img src="https://img.shields.io/github/stars/suitangi/RedditMtgCardHover?style=for-the-badge&logo=github" alt="Stars">
+  </a>
+</p>
 
-Clone this repository
+
+## Features
+
+- **Instant Card Previews** - Hover over MTGCardFetcher links to see card images
+- **Smart Positioning** - Cards auto-position to stay within viewport
+- **Resizable Cards** - Drag the corner to resize cards to your preference  
+- **Universal Reddit Support** - Works on both new Reddit and old Reddit
+- **Privacy First** - No data collection, minimal permissions
+- **Lightweight** - Fast and efficient with minimal resource usage
+
+![Demo GIF](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/drag.gif)
+## Installation
+
+### Option 1: Browser Extension Stores
+
+- **Firefox**: [Install from Firefox Add-ons](https://addons.mozilla.org/addon/reddit-mtg-card-hover/) *(Coming Soon)*
+- **Chrome**: [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/reddit-mtg-card-hover) *(Coming Soon)*
+
+### Option 2: Manual Installation (Developer)
+
+1. **Download the latest release:**
+   ```bash
+   git clone https://github.com/suitangi/RedditMtgCardHover.git
+   ```
+   OR [Download ZIP](https://github.com/suitangi/RedditMtgCardHover/archive/refs/heads/master.zip)
+
+2. **Choose your browser:**
+
+   **Firefox**
+   ```bash
+   cd firefox-extension
+   npm install
+   npm run build
+   ```
+   - Open Firefox → `about:debugging` → "This Firefox" → "Load Temporary Add-on"
+   - Select the built `.xpi` file from `web-ext-artifacts/`
+
+   **Chrome**
+   ```bash
+   cd chrome-extension
+   npm install  
+   npm run dev
+   ```
+   - Open Chrome → `chrome://extensions/` → Enable "Developer mode" → "Load unpacked"
+   - Select the `dist/` folder
+
+### Option 3: Self-Signed Firefox Extension
+
+For Firefox users who want a signed extension for permanent installation:
+1. See [Firefox Signing Instructions](firefox-extension/SIGNING.md)
+2. Download signed `.xpi` from releases
+
+## Usage
+
+1. **Navigate** to any Magic: The Gathering subreddit
+2. **Look** for MTGCardFetcher bot comments
+3. **Hover** over card name links to see card images
+4. **Drag** the bottom-right corner to resize cards
+5. **Double-click** cards to open Scryfall page
+
+### Supported Subreddits
+
+Works on **80+ Magic subreddits** including:
 ```
-git clone https://github.com/suitangi/RedditMtgCardHover.git
+r/magicTCG, r/EDH, r/ModernMagic, r/CompetitiveEDH, r/mtgfinance, 
+r/spikes, r/custommagic, r/budgetdecks, r/pauper, r/Pioneer, 
+r/mtgcube, r/mtgbrawl, and many more!
 ```
 
-or download the latest release [here](https://github.com/suitangi/RedditMtgCardHover/releases).
+Missing a subreddit? [Open an issue](https://github.com/suitangi/RedditMtgCardHover/issues) to get it added!
 
+## Development
 
-Then you can load the unpacked extension in either `firefox-extension` or the `chrome-extension` directory (depending on your browser type).
-See more instructions here:
-- [Chrome](https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/)
-- [Firefox](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/)
+### Prerequisites
+- Node.js 14+ 
+- Firefox or Chrome browser
 
+### Build Instructions
 
-## Options
-- Double click on a card to go to its Scryfall page
-- Drag the bottom right corner of a card to resize
-  - This card size is saved as a preference and used across all cards
-
-![Draggif](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/drag.gif)
-
-## List of Subreddits
-This is the list of subreddits that this extension works on:
+**Firefox Extension:**
+```bash
+cd firefox-extension
+npm install
+npm run build    # Creates signed package
+npm run dev      # Development mode
+npm run lint     # Check for issues
 ```
-"239MTG", "affinityforartifacts", "alliesmtg", "AllStandards", "Alphabetter", "Amonkhet", "architectMTG", "ArclightPhoenixMTG", "aristocratsMTG", "BadMTGCombos", "basementboardgames", "BaSE_MtG", "BudgetBrews", "budgetdecks", "BulkMagic", "cardsphere", "casualmtg", "CatsPlayingMTG", "CircuitContest", "cocomtg", "CompetitiveEDH", "custommagic", "DeckbuildingPrompts", "edh", "EDHug", "EggsMTG", "ElvesMTG", "enchantress", "EsperMagic", "findmycard", "fishmtg", "FlickerMTG", "freemagic", "goblinsMTG", "HamiltonMTG", "HardenedScales", "humansmtg", "infect", "johnnys", "kikichord", "lanternmtg", "lavaspike", "locketstorm", "lrcast", "magicarena", "Magicdeckbuilding", "MagicDuels", "magicTCG", "magicTCG101", "MakingMagic", "marchesatheblackrose", "marduMTG", "MentalMentalMagic", "millMTG", "ModernLoam", "modernmagic", "ModernRecMTG", "modernspikes", "ModernZombies", "monobluemagic", "mtg", "MTGAngels", "mtgbattlebox", "mtgbracket", "mtgbrawl", "mtgbudgetmodern", "mtgcardfetcher", "mtgcube", "MTGDredge", "mtgfinalfrontier", "mtgfinance", "mtgfrontier", "mtglegacy", "MTGManalessDredge", "MTGMaverick", "mtgmel", "mtgrules", "mtgspirits", "mtgtreefolk", "mtgvorthos", "neobrand", "nicfitmtg", "oathbreaker_mtg", "oldschoolmtg", "pauper", "PauperArena", "PauperEDH", "peasantcube", "PennyDreadfulMTG", "PioneerMTG", "planeshiftmtg", "ponzamtg", "RatsMTG", "RealLifeMTG", "RecklessBrewery", "rpg_brasil", "scapeshift", "shittyjudgequestions", "sistersmtg", "skredred", "Sligh", "spikes", "stoneblade", "StrangeBrewEDH", "SuperUltraBudgetEDH", "therandomclub", "Thoptersword", "threecardblind", "TinyLeaders", "TronMTG", "UBFaeries", "uwcontrol", "xmage"
+
+**Chrome Extension:**
+```bash
+cd chrome-extension  
+npm install
+npm run build    # Creates ZIP for Web Store
+npm run dev      # Development testing
 ```
-Contact me if there's another subreddit that should be added!
 
-## Contributing
-If you like this extension, feel free to contribute code or suggest possible functionalities by opening an issue.
+### Special Thanks
 
-Special thanks to my beta tester:
-- [G-Jayakar](https://github.com/G-Jayakar)
+- **Beta Tester**: [G-Jayakar](https://github.com/G-Jayakar)
+- **MTGCardFetcher Bot**: For making this extension possible
+- **Scryfall**: For providing the card images
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Disclaimer
-This extension is a third-party project and has no affiliation with Reddit nor Wizards of the Coast.
-This project is also free, open sourced and collects no user data.
 
-**Permissions required**:
-- `storage` for user preferences
+This extension is a third-party project and has **no affiliation** with:
+- Reddit, Inc.
+- Wizards of the Coast
+- Scryfall
+- The MTGCardFetcher bot
+
+This is a free, open-source project that enhances your Reddit browsing experience.
+
+---
+
+<p align="center">
+  <strong>Enjoying the extension? Give it a ⭐ on GitHub!</strong>
+</p>
 
 ## Change Log
 ```

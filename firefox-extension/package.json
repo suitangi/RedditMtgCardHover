@@ -1,0 +1,53 @@
+{
+  "name": "reddit-mtg-cardhover-firefox",
+  "version": "2.1.0",
+  "description": "Shows the card image after mouse hover for MTGCardFetcher bot on Reddit - Firefox Extension",
+  "main": "index.js",
+  "scripts": {
+    "start": "web-ext run",
+    "build": "web-ext build --overwrite-dest",
+    "lint": "web-ext lint",
+    "sign": "node scripts/sign.js",
+    "sign-listed": "node scripts/sign.js --channel=listed",
+    "pack": "web-ext build --overwrite-dest",
+    "dev": "web-ext run --verbose --start-url https://www.reddit.com/r/magicTCG",
+    "test": "web-ext lint --verbose",
+    "clean": "rimraf web-ext-artifacts",
+    "prebuild": "npm run clean",
+    "release": "npm run lint && npm run build && npm run sign",
+    "setup-signing": "node scripts/setup-signing.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suitangi/RedditMtgCardHover"
+  },
+  "keywords": [
+    "firefox",
+    "extension",
+    "reddit",
+    "mtg",
+    "magic-the-gathering",
+    "card",
+    "hover",
+    "scryfall"
+  ],
+  "author": "suitangi",
+  "license": "MIT",
+  "devDependencies": {
+    "web-ext": "^8.10.0",
+    "rimraf": "^5.0.0",
+    "dotenv": "^16.4.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "webExt": {
+    "sourceDir": "./",
+    "artifactsDir": "./web-ext-artifacts/",
+    "run": {
+      "startUrl": [
+        "https://www.reddit.com/r/magicTCG"
+      ]
+    }
+  }
+}
