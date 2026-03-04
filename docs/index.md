@@ -1,28 +1,43 @@
 
-![Screengif](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/reddithover.gif)
+# Reddit MTG Card Hover
 
-*Note*: This extension works with both New Reddit and Old Reddit.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/icon.png" alt="Extension Icon" width="128">
+</p>
 
-## ![icon](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/icon.png) Using this extension
+<p align="center">
+  <strong>A lightweight browser extension that adds hover card previews for Reddit's u/MtgCardFetcher bot</strong>
+</p>
 
-### Users
-You can download the extension/add-on here:
-- [Chrome](https://chrome.google.com/webstore/detail/reddit-mtgcardfetcher-hov/lgolghfbfjpegcdaneojpnaccppdacbi)
-- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/reddit-mtgcardfetcher-hover/)
+<p align="center">
+  <a href="https://github.com/suitangi/RedditMtgCardHover/releases/latest">
+    <img src="https://img.shields.io/github/v/release/suitangi/RedditMtgCardHover?style=for-the-badge&logo=github" alt="Latest Release">
+  </a>
+  <a href="https://github.com/suitangi/RedditMtgCardHover/stargazers">
+    <img src="https://img.shields.io/github/stars/suitangi/RedditMtgCardHover?style=for-the-badge&logo=github" alt="Stars">
+  </a>
+</p>
+
+
+## Features
+
+- **Instant Card Previews** - Hover over MTGCardFetcher links to see card images
+- **Smart Positioning** - Cards auto-position to stay within viewport
+- **Resizable Cards** - Drag the corner to resize cards to your preference  
+- **Universal Reddit Support** - Works on both new Reddit and old Reddit
+- **Privacy First** - No data collection, minimal permissions
+- **Lightweight** - Fast and efficient with minimal resource usage
+
+![Demo GIF](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/drag.gif)
+
+## Installation
+- **Firefox**: [Install from Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/reddit-mtgcardfetcher-hover/)
+- **Chrome**: [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/reddit-mtg-card-hover)
 
 
 ### Developers
 Check out the [Github Project page](https://github.com/suitangi/RedditMtgCardHover)
 
-
-## Options
-![Screenshot](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/Options.png)
-
-The preference options for this extension are:
-- **Hover**: Turns the mouse hover function on/off
-- **Size**: Adjusts the size of the card image upon mouseover of the card link
-
-These options can be adjusted in the options page of the extension or the popup button.
 
 ## List of Subreddits
 This is the list of subreddits that this extension works on:
@@ -47,6 +62,7 @@ This project is also free and does not collect any user data whatsoever.
 
 ## Change Log
 ```
+v2.1.4 Optimizations, drag-resize and firefox signing.
 v1.2.3 Icon update and major fixes for new Reddit layout.
 v1.2.2 More bug fixes.
 v1.2.1 Bug fixes with options and hovering.
