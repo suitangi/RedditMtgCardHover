@@ -12,9 +12,6 @@
   <a href="https://github.com/suitangi/RedditMtgCardHover/releases/latest">
     <img src="https://img.shields.io/github/v/release/suitangi/RedditMtgCardHover?style=for-the-badge&logo=github" alt="Latest Release">
   </a>
-  <a href="https://github.com/suitangi/RedditMtgCardHover/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/suitangi/RedditMtgCardHover?style=for-the-badge" alt="License">
-  </a>
   <a href="https://github.com/suitangi/RedditMtgCardHover/stargazers">
     <img src="https://img.shields.io/github/stars/suitangi/RedditMtgCardHover?style=for-the-badge&logo=github" alt="Stars">
   </a>
@@ -116,15 +113,12 @@ npm run build    # Creates ZIP for Web Store
 npm run dev      # Development testing
 ```
 
-### Special Thanks
+## Special Thanks
 
 - **Beta Tester**: [G-Jayakar](https://github.com/G-Jayakar)
 - **MTGCardFetcher Bot**: For making this extension possible
 - **Scryfall**: For providing the card images
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Disclaimer
 
