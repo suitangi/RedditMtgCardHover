@@ -1,15 +1,11 @@
 
-# Reddit MTG Card Hover
+# ![](https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/icon.png) Reddit MTG Card Hover
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/suitangi/RedditMtgCardHover/master/docs/img/icon.png" alt="Extension Icon" width="128">
-</p>
-
-<p align="center">
+<p>
   <strong>A lightweight browser extension that adds hover card previews for Reddit's u/MtgCardFetcher bot</strong>
 </p>
 
-<p align="center">
+<p>
   <a href="https://github.com/suitangi/RedditMtgCardHover/releases/latest">
     <img src="https://img.shields.io/github/v/release/suitangi/RedditMtgCardHover?style=for-the-badge&logo=github" alt="Latest Release">
   </a>
@@ -62,6 +58,7 @@ This project is also free and does not collect any user data whatsoever.
 
 ## Change Log
 ```
+v2.1.5 Fixes a bug introduced in 2.1.4 where css doesn't load.
 v2.1.4 Optimizations, drag-resize and firefox signing.
 v1.2.3 Icon update and major fixes for new Reddit layout.
 v1.2.2 More bug fixes.
