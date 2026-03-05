@@ -234,7 +234,7 @@
     
     // Inject CSS
     try {
-      loadCSS('cardHover');
+      loadCSS('src/cardHover');
     } catch (err) {
       console.error('Error loading CSS:', err);
       return;

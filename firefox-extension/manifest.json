@@ -1,6 +1,6 @@
 {
   "name": "Reddit MTGCardFetcher Hover",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "short_name": "Reddit MTGCard Hover",
   "description": "Shows the card image after mouse hover for MTGCardFetcher bot on Reddit.",
   "manifest_version": 3,
