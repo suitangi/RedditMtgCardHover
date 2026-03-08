@@ -33,7 +33,7 @@
 ### Option 1: Browser Extension Stores
 
 - **Firefox**: [Install from Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/reddit-mtgcardfetcher-hover/)
-- **Chrome**: [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/reddit-mtg-card-hover)
+- **Chrome**: [Install from Chrome Web Store](https://chromewebstore.google.com/detail/reddit-mtgcardfetcher-hov/lgolghfbfjpegcdaneojpnaccppdacbi)
 
 ### Option 2: Manual Installation (Developer)
 
