@@ -34,7 +34,7 @@
   "author": "suitangi",
   "license": "MIT",
   "devDependencies": {
-    "web-ext": "^8.10.0",
+    "web-ext": "^10.0.0",
     "rimraf": "^5.0.0",
     "dotenv": "^16.4.0"
   },
